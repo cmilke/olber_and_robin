@@ -1,0 +1,17 @@
+Chris Milke
+Math Methods HW 12
+
+Analytic Equation for the mean free path (l) of a particle is:
+
+l = 1 / ( a * n )
+
+with a the cross-sectional length/area of a tree/star
+and n the number of trees/stars per unit area/volume
+
+Robin Hood:
+
+l = 1 / ( 2 * 0.005 ) = 100 meters
+
+Olber:
+
+l = 1 / [ pi*(7*10^8)^2 * 10^9 * (3.086*10^22)^-3 ] = 1.9*10^40 meters

@@ -5,8 +5,11 @@ import math
 import sys
 
 star_radius = 0.5
-radius_of_galaxy = 100.0
-stars_in_galaxy = 2000000
+galaxy_density = .5
+radius_of_galaxy = 100
+volume_of_galaxy = (4.0/3.0) * math.pi * (radius_of_galaxy**3)
+stars_in_galaxy = int(galaxy_density * volume_of_galaxy)
+
 
 number_of_galaxies = 10
 total_arrows = 10000
@@ -86,23 +89,23 @@ def shoot_arrows_into(galaxy):
 
 
 def main():
-    global galaxy_density, radius_of_galaxy, stars_in_galaxy
     if len(sys.argv) < 3:
-        print("Usage: olber density radius")
+        print("Usage: olber star_density star_radius")
         exit(0)
-    galaxy_density = float(sys.argv[1])
-    radius_of_galaxy = float(sys.argv[2])
-    volume_of_galaxy = (4.0/3.0) * math.pi * (radius_of_galaxy**3)
-    trees_in_galaxy = int(galaxy_density * volume_of_galaxy)
+    unscaled_galaxy_density = float(sys.argv[1])
+    unscaled_star_radius = float(sys.argv[2])
 
     average_total_distance = 0.0
     for galaxy_number in range(number_of_galaxies):
         galaxy = generate_galaxy()
         galaxy_average = shoot_arrows_into(galaxy)
         average_total_distance += galaxy_average
-        print("Finished galaxy " + str(galaxy_number) + ", average = " + str(galaxy_average))
+        print("Finished galaxy " + str(galaxy_number) + ", unscaled average = " + str(galaxy_average))
     final_average_distance = average_total_distance / number_of_galaxies
-    print("AVERAGE DISTANCE TRAVELLED = " + str(final_average_distance))
+
+    scale_factor = (galaxy_density/unscaled_galaxy_density) * ( (star_radius/unscaled_star_radius)**2 )
+    scaled_average = final_average_distance * scale_factor
+    print("AVERAGE SCALED DISTANCE TRAVELLED = " + str(scaled_average))
 #END MAIN
 
 

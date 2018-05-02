@@ -5,9 +5,9 @@ import math
 import sys
  
 
-forest_density = 1.0
-radius_of_forest = 100.0
-trees_in_forest = int(forest_density * area_of_forest)
+forest_density = 0.0
+radius_of_forest = 0.0
+trees_in_forest = 0.0
 
 number_of_forests = 30
 total_arrows = 10000
@@ -76,12 +76,13 @@ def shoot_arrows_into(forest):
 
 
 def main():
-    global forest_density, radius_of_forest, trees_in_forest
-    if len(sys.argv) < 3:
-        print("Usage: robin density radius")
+    global forest_density, tree_radius, radius_of_forest, trees_in_forest
+    if len(sys.argv) < 4:
+        print("Usage: robin density tree_radius forest_radius")
         exit(0)
     forest_density = float(sys.argv[1])
-    radius_of_forest = float(sys.argv[2])
+    tree_radius = float(sys.argv[2])
+    radius_of_forest = float(sys.argv[3])
     area_of_forest = math.pi * (radius_of_forest**2)
     trees_in_forest = int(forest_density * area_of_forest)
 
